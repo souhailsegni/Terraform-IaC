@@ -30,3 +30,11 @@ module "ec2_instances" {
     key_name           = var.key_name                        # Key name from variables.
     security_group     = module.vpc_setup.public_sg_id   # Security group ID from VPC module.
 }
+terraform {
+  backend "s3" {
+    bucket         = "s3-bucket-terraform-1"
+    key            = "Terraform/terraform.tfstate"
+    region         = "eu-west-1"
+    encrypt        = true
+  }
+}
